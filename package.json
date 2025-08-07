@@ -1,0 +1,33 @@
+{
+  "name": "@local/stitch-legacy-monorepo",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "setup:pnpm": "corepack prepare $npm_package_packageManager --activate"
+  },
+  "dependencies": {
+    "@types/chai": "^4.3.10",
+    "@types/mocha": "^10.0.4",
+    "@types/node": "^20.9.0",
+    "@typescript-eslint/eslint-plugin": "~6.11.0",
+    "@typescript-eslint/parser": "~6.11.0",
+    "@typescript-eslint/utils": "^6.11.0",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "mocha": "^10.2.0",
+    "prettier": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
+  "packageManager": "pnpm@8.7.6",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "5.2.2"
+  }
+}
