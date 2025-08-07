@@ -9,9 +9,8 @@ import { assert } from '../utility/errors.js';
 import paths from '../utility/paths.js';
 import { StitchStorage } from './StitchStorage.js';
 
-export type StitchProjectConfigFile = z.infer<
-  (typeof StitchProjectConfig)['fileSchema']
->;
+// @ts-expect-error Something weird going on here?
+export type StitchProjectConfigFile = z.infer<typeof stitchConfigSchema>;
 
 type StitchProjectConfigAssignmentField =
   | 'textureGroupAssignments'
@@ -19,7 +18,7 @@ type StitchProjectConfigAssignmentField =
 
 /** The Project Config lives alongside the .yyp file */
 export class StitchProjectConfig {
-  static readonly fileSchema = stitchConfigSchema;
+  static readonly fileSchema: typeof stitchConfigSchema = stitchConfigSchema;
 
   // TODO: Make all of this ASYNNCCCC!!!!
 
@@ -151,7 +150,7 @@ export class StitchProjectConfig {
     return await this.deleteGroupAssignment('audioGroupAssignments', folder);
   }
 
-  async load() {
+  async load(): Promise<StitchProjectConfigFile> {
     return await pathy<StitchProjectConfigFile>(this.filePathAbsolute).read({
       fallback: {},
       schema: StitchProjectConfig.fileSchema,
